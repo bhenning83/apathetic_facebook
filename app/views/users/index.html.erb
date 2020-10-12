@@ -1,0 +1,5 @@
+<% @users.each do |u| %>
+  <%= u.name %> <%= link_to 'show', user_path(u.id) %><br />
+<% end %>
+
+  <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete' %>
