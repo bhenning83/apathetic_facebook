@@ -1,3 +1,13 @@
 <h1><%= @user.name %>'s page</h1>
 
+<%= render 'shared/new_post' %>
+<% if @user.posts %>
+  <% @user.posts.each do |p| %>
+    <%= p.body %><br />
+    <%= link_to 'Edit', edit_post_path(p.id) %>
+    <%= link_to 'Delete', post_path(p.id), method: 'delete' %><br />
+  <% end %>
+<% end %>
+
 <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete' %>
+<%= link_to 'Index', posts_path %>
