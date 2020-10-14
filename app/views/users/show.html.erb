@@ -9,5 +9,15 @@
   <% end %>
 <% end %>
 
+<% if @user != current_user %>
+  <% unless @c_user_friends.include? @user %>
+    <% if request_sent?(@user) %>
+      <p>Friend request sent. Not looking too good, huh bud?</p>
+    <% else %>
+      <%= button_to 'Send Friend Request', friend_requests_path(user_id: @user.id) %>
+    <% end %>
+  <% end %>
+<% end %>
+
 <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete' %>
 <%= link_to 'Index', posts_path %>

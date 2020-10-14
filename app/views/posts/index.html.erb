@@ -1,4 +1,7 @@
 <% @posts.each do |p| %>
   <%= p.body %><br />
-  <%= p.user.name %><br /><br />
+  <%= link_to p.user.name, user_path(p.user.id) %><br /><br />
 <% end %>
+<%= render 'shared/new_post'%>
+<%= link_to 'Profile', user_path(current_user) %>
+<%= link_to 'Sign Out', destroy_user_session_path, method: 'delete' %>
