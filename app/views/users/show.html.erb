@@ -10,7 +10,7 @@
 <% end %>
 
 <% if @user != current_user %>
-  <% unless @c_user_friends.include? @user %>
+  <% unless friends?(@user) %>
     <% if request_sent?(@user) %>
       <p>Friend request sent. Not looking too good, huh bud?</p>
     <% else %>
@@ -19,5 +19,17 @@
   <% end %>
 <% end %>
 
+<% if @user == current_user %>
+  <h3>Friend requests:</h3>
+  <% if friend_request_list.nil? %>
+    <p>Looks like no one wants to be your friend.</p>
+  <% else %>
+    <% friend_request_list.each do |r| %>
+      <%= r.requester.name %>
+      <%= button_to 'Accept', friendships_path(friend_request: r) %>
+      <%= button_to 'Deny', friendship_path(friend_request: r), method: 'delete' %>
+    <% end %>
+  <% end %>
+<% end %>
 <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete' %>
 <%= link_to 'Index', posts_path %>

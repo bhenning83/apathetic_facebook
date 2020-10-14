@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   resources :posts
   resources :friend_requests, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy]
 
   post 'posts/new', to: 'posts#create'
 
