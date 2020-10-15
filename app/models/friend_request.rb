@@ -13,4 +13,5 @@ class FriendRequest < ApplicationRecord
   def decline
     self.destroy
   end
+
 end

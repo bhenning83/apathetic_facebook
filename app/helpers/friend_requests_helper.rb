@@ -1,7 +1,21 @@
 module FriendRequestsHelper
   def request_sent?(user)
-    request = FriendRequest.where('requestee_id: user.id AND
-                                  requester_id: current_user.id')
+    requestee?(user) || requester?(user)
+  end
+
+  def requester?(user)
+    request = FriendRequest.where('requestee_id = ? AND
+                                   requester_id = ?',
+                                   user.id, 
+                                   current_user.id)[0]
+    request
+  end
+
+  def requestee?(user)
+     request = FriendRequest.where('requestee_id = ? AND
+                                   requester_id = ?',
+                                   current_user.id, 
+                                   user.id)[0]
     request
   end
 

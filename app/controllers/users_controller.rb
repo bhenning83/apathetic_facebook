@@ -7,5 +7,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @all_users = User.all
+    @all_posts = Post.where(user_id: @user.id)
   end
 end

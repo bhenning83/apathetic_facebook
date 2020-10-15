@@ -1,8 +1,11 @@
 <h1><%= @user.name %>'s page</h1>
 
-<%= render 'shared/new_post' %>
+<% if current_user == @user %>
+  <%= render 'shared/new_post' %>
+<% end %>
+
 <% if @user.posts %>
-  <% @user.posts.each do |p| %>
+  <% @all_posts.each do |p| %>
     <%= p.body %><br />
     <%= link_to 'Edit', edit_post_path(p.id) %>
     <%= link_to 'Delete', post_path(p.id), method: 'delete' %><br />
@@ -10,26 +13,32 @@
 <% end %>
 
 <% if @user != current_user %>
-  <% unless friends?(@user) %>
-    <% if request_sent?(@user) %>
+  <% if friends?(@user) %>
+    <%= button_to 'Forget this fool',
+    friendship_path(friend_id: @user.id), method: 'delete' %>
+  <% elsif request_sent?(@user) %>
+    <% if requester?(@user) %>
       <p>Friend request sent. Not looking too good, huh bud?</p>
     <% else %>
-      <%= button_to 'Send Friend Request', friend_requests_path(user_id: @user.id) %>
+      <p>Respond to their friend request if you want.</p>
     <% end %>
+  <% else %>
+    <%= button_to 'Send Friend Request', friend_requests_path(user_id: @user.id) %>
   <% end %>
 <% end %>
 
 <% if @user == current_user %>
   <h3>Friend requests:</h3>
-  <% if friend_request_list.nil? %>
+  <% if friend_request_list.empty? %>
     <p>Looks like no one wants to be your friend.</p>
   <% else %>
     <% friend_request_list.each do |r| %>
       <%= r.requester.name %>
       <%= button_to 'Accept', friendships_path(friend_request: r) %>
-      <%= button_to 'Deny', friendship_path(friend_request: r), method: 'delete' %>
+      <%= button_to 'Deny', friend_request_path(friend_request: r), method: 'delete' %>
     <% end %>
   <% end %>
 <% end %>
 <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete' %>
 <%= link_to 'Index', posts_path %>
+<%= link_to 'Profile', user_path(current_user) %>

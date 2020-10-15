@@ -10,5 +10,8 @@ class FriendRequestsController < ApplicationController
   end
 
   def destroy
+    friend_request = FriendRequest.find_by(id: params[:friend_request])
+    friend_request.decline
+    redirect_to request.referrer
   end
 end

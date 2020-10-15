@@ -6,9 +6,9 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    friend_request = FriendRequest.find_by(id: params[:friend_request])
-    friend_request.decline
-    redirect_to request.referrer
+    Friendship.where('user_id: current_user.id AND
+                      friend_id: params[:friend_id]')
+    Friendship.destroy(@friendship.id)
   end
 
 end
