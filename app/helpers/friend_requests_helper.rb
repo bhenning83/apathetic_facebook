@@ -1,5 +1,5 @@
 module FriendRequestsHelper
-  def request_sent?(user)
+  def find_request(user)
     requestee?(user) || requester?(user)
   end
 
