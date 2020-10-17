@@ -1,6 +1,7 @@
 <% @posts.each do |p| %>
   <%= p.body %><br />
-  <%= link_to p.user.name, user_path(p.user.id) %><br /><br />
+  <%= link_to p.user.name, user_path(p.user.id) %><br />
+  <%= render 'shared/likes', { post: p } %><br /><br />
 <% end %>
 <%= render 'shared/new_post'%>
 <%= render 'shared/links' %>

@@ -9,6 +9,7 @@ class FriendshipsController < ApplicationController
     Friendship.where('user_id: current_user.id AND
                       friend_id: params[:friend_id]')
     Friendship.destroy(@friendship.id)
+    redirect_to request.referrer
   end
 
 end
