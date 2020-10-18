@@ -21,5 +21,6 @@ class User < ApplicationRecord
             foreign_key: :requester_id
 
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
 end
