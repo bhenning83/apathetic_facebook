@@ -1,0 +1,5 @@
+<%= form_for :comment, url: new_comment_path(post.id) do |f| %>
+  <%= f.hidden_field :post_id, value: post.id %>
+  <%= f.text_field :body, placeholder: 'Now what?' %><br /> 
+  <%= f.submit 'Share' %>
+<% end %>

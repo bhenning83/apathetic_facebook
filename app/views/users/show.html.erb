@@ -6,8 +6,9 @@
 
 <% if @user.posts %>
   <% @all_posts.each do |p| %>
-    <%= p.body %><br />
+    <h3><%= p.body %></h3>
     <%= render 'shared/likes', { post: p } %><br />
+    <%= render 'shared/comments', { comments: find_comments(p) } %>
     <% if current_user == @user %>
       <%= link_to 'Edit', edit_post_path(p.id) %>
       <%= link_to 'Delete', post_path(p.id), method: 'delete' %>

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @posts = Post.includes(:user).all.order(created_at: :desc)
   end
@@ -31,8 +32,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.update(post_params)
   end
-    
-
+  
   private
 
   def post_params

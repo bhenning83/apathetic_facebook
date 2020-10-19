@@ -4,14 +4,16 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:index, :show]
-  resources :posts
   resources :friend_requests, only: [:create, :destroy]
   resources :friendships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
+  resources :posts
+  resources :comments
 
   get 'likes', to: 'posts#index'
 
-  post 'posts/new', to: 'posts#create'
+  post 'posts/new',    to: 'posts#create'
+  post 'comments/new', to: 'comments#create'
 
   devise_scope :user do
     root to: 'users#index'

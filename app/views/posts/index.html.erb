@@ -1,8 +1,12 @@
 <% @posts.each do |p| %>
   <%= p.body %><br />
   <%= link_to p.user.name, user_path(p.user.id) %><br />
-  <%= render 'shared/likes', { post: p } %><br /><br />
+  <%= render 'shared/likes', { post: p } %><br />
+  <% if p.comments.any?%>
+    <%= render 'shared/comments', { comments: find_comments(p) } %>
+  <% end %>
+  <%= render 'shared/new_comment', { post: p } %><br />
 <% end %>
-<%= render 'shared/new_post'%>
+<%= render 'shared/new_post' %>
 <%= render 'shared/links' %>
 <%= link_to 'See all users', users_path %>
