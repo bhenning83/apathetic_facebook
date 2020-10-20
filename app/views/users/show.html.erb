@@ -1,5 +1,11 @@
 <h1><%= @user.name %>'s page</h1>
 
+<% if @user.avatar.attached? %>
+  <%= image_tag @user.avatar %>
+<% else %>
+  <%= link_to 'Add a profile pic', edit_user_registration_path(current_user) %>
+<% end %>
+
 <% if current_user == @user %>
   <%= render 'shared/new_post' %>
 <% end %>
@@ -43,3 +49,4 @@
 <% end %>
 
 <%= render 'shared/links' %>
+<%= link_to 'Edit Profile', edit_user_registration_path(current_user)%>
