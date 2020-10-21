@@ -2,7 +2,7 @@
 
 <% if @user.avatar.attached? %>
   <%= image_tag @user.avatar %>
-<% else %>
+<% elsif @user == current_user %>
   <%= link_to 'Add a profile pic', edit_user_registration_path(current_user) %>
 <% end %>
 

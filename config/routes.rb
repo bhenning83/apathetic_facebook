@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   post 'posts/new',    to: 'posts#create'
   post 'comments/new', to: 'comments#create'
 
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
+
   devise_scope :user do
     root to: 'users#index'
   end
