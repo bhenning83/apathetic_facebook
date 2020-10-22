@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Well, <%= @user.name %>, you're signed up. No going back now.</h1>
+    <p>
+      Unless you cancel your account. Do what you want.
+    </p>
+    <p>
+      Visit your page <%= link_to 'here.', user_url(@user) %>.
+    </p>
+    <p>k bye.</p>
+  </body>
+</html>

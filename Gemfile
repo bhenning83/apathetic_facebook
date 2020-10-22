@@ -38,10 +38,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'omniauth-github'
-gem 'activerecord-session_store'
 
 gem 'figaro'
+
+gem "letter_opener", :group => :development
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
