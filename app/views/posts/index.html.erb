@@ -1,5 +1,5 @@
 <% @posts.each do |p| %>
-  <% if @friends.include?(p.user) %>
+  <% if @friends.include?(p.user) || p.user == current_user %>
     <%= p.body %><br />
     <%= link_to p.user.name, user_path(p.user.id) %><br />
     <%= render 'shared/likes', { post: p } %><br />
