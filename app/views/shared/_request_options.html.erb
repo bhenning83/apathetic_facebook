@@ -1,0 +1,10 @@
+<% if friends.include?(user) %>
+  <%= button_to 'Forget this fool', friendship_path(user), method: 'delete' %>
+<% elsif sent_requests.include?(user) %>
+  <p>Friend request sent. Not looking too good, huh bud?</p>
+<% elsif received_requests.include?(user) %>
+  <p>Respond to their friend request if you want:</p>
+  <%= render 'request', { request: find_request(user) } %>
+<% else %>
+  <%= button_to 'Send Friend Request', friend_requests_path(user_id: user.id) %>
+<% end %>

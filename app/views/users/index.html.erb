@@ -1,6 +1,8 @@
 <h2>You are signed in as <%=current_user.name %></h2>
+
 <% @users.each do |u| %>
-  <%= u.name %> <%= link_to 'show', user_path(u.id) %><br />
+  <%= link_to u.name, user_path(u.id) %><br />
+  <%= render 'shared/request_options', { user: u } %>
 <% end %>
 
 <%= render 'shared/links' %>

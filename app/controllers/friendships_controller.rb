@@ -6,10 +6,17 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    Friendship.where('user_id: current_user.id AND
-                      friend_id: params[:friend_id]')
-    Friendship.destroy(@friendship.id)
-    redirect_to request.referrer
+    friendship = Friendship.where('user_id = ? AND
+                                    friend_id = ?',
+                                    current_user.id, params[:id])[0]
+    puts '!!!!!!!!!'
+    puts friendship.id
+    if friendship.destroy
+      redirect_to root_url
+    else
+      puts 'uh oh'
+      redirect_to root_url
+    end
   end
 
 end

@@ -10,31 +10,22 @@
   <%= render 'shared/new_post' %>
 <% end %>
 
-<% if @user.posts %>
-  <% @all_posts.each do |p| %>
-    <h3><%= p.body %></h3>
-    <%= render 'shared/likes', { post: p } %><br />
-    <%= render 'shared/comments', { comments: find_comments(p) } %>
-    <% if current_user == @user %>
-      <%= link_to 'Edit', edit_post_path(p.id) %>
-      <%= link_to 'Delete', post_path(p.id), method: 'delete' %>
-    <% end %><br /><br />
+<% if friends.include?(@user) %>
+  <% if @user.posts %>
+    <% @all_posts.each do |p| %>
+      <h3><%= p.body %></h3>
+      <%= render 'shared/likes', { post: p } %><br />
+      <%= render 'shared/comments', { comments: find_comments(p) } %>
+      <% if current_user == @user %>
+        <%= link_to 'Edit', edit_post_path(p.id) %>
+        <%= link_to 'Delete', post_path(p.id), method: 'delete' %>
+      <% end %><br /><br />
+    <% end %>
   <% end %>
 <% end %>
 
 <% if @user != current_user %>
-  <% if friends?(@user) %>
-    <%= button_to 'Forget this fool', friendship_path(friend_id: @user.id), method: 'delete' %>
-  <% elsif find_request(@user) %>
-    <% if requester?(@user) %>
-      <p>Friend request sent. Not looking too good, huh bud?</p>
-    <% else %>
-      <p>Respond to their friend request if you want:</p>
-      <%= render 'request', { request: find_request(@user) } %>
-    <% end %>
-  <% else %>
-    <%= button_to 'Send Friend Request', friend_requests_path(user_id: @user.id) %>
-  <% end %>
+  <%= render 'shared/request_options', { user: @user } %>
 <% end %>
 
 <% if @user == current_user %>

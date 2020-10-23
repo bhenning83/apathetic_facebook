@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  
   def index
     @users = User.all
+    @all_friends = current_user.friends.all
   end
 
   def show
