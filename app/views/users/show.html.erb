@@ -10,7 +10,7 @@
   <%= render 'shared/new_post' %>
 <% end %>
 
-<% if friends.include?(@user) %>
+<% if friends.include?(@user) || current_user == @user %>
   <% if @user.posts %>
     <% @all_posts.each do |p| %>
       <h3><%= p.body %></h3>
