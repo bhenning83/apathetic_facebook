@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  Rails.application.routes.default_url_options[:host] = "XXX"
   devise_for :users, :controllers => {
     registrations: 'registrations'
   }
