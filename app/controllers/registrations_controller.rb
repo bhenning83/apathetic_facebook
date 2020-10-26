@@ -2,7 +2,11 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     super
     if @user.persisted?
-      UserMailer.with(user: @user).welcome_email.deliver_now
+       begin
+      UserMailer.with(user: @user).welcome_email.deliver_now #unless Rails.env.production?
+    rescue
+      flash.notice = "Successfully signed up. (Welcome email not sent)"
+    end
     end
   end
   
