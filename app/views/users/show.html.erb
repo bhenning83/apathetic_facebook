@@ -1,16 +1,23 @@
 <div class="d-flex align-items-baseline">
   <h1 class="pt-4"><%= @user.name %></h1>
   <% if current_user == @user %>
-    <%= link_to 'Edit', edit_user_registration_path(current_user)%>
   <% end %>
 </div>
 
-<% if @user.avatar.attached? %>
-  <%= image_tag @user.avatar %>
-<% elsif @user == current_user %>
-  <%= image_tag @user.gravatar_url %>
-  <%= link_to 'Add a profile pic', edit_user_registration_path(current_user) %>
-<% end %>
+  <div class="prof-pic-box bg-light">
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar, class: "prof-pic" %>
+      <div class="edit-profile">
+        <%= link_to 'Edit', edit_user_registration_path(current_user) %>
+      </div>
+    <% elsif @user == current_user %>
+      <div class="edit-profile">
+        <%= link_to 'Add a profile pic', edit_user_registration_path(current_user) %>
+      </div>
+  </div>
+  <% else %>
+    <%= image_tag @user.gravatar_url(default: 'wavatar', size: 120), class: "prof-pic"%>
+  <% end %>
 
 <% if current_user == @user %>
   <%= render 'shared/new_post' %>
