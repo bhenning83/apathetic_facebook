@@ -7,9 +7,21 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'custom.css' %>
   </head>
 
   <body>
+    <header class="jumbotron jumbotron-fluid">
+      <div class="container d-flex justify-content-between">
+        <h1>Apathetic Facebook :/</h1>
+        <div class="align-self-center">
+          <% if user_signed_in? %>
+            <%= render 'shared/links', class: "jumbo-links" %>
+          <% end %>
+        </div>
+      </div>
+    </header>
+
   <% flash.each do |type, msg| %>
     <div>
       <%= msg %>
