@@ -22,6 +22,6 @@ Rails.application.routes.draw do
   get 'privacy', to: 'static#privacy'
 
   devise_scope :user do
-    root to: 'users#index'
+    root to: 'posts#index'
   end
 end

@@ -1,14 +1,18 @@
-<% @posts.each do |p| %>
-  <% if @friends.include?(p.user) || p.user == current_user %>
-    <%= p.body %><br />
-    <%= link_to p.user.name, user_path(p.user.id) %><br />
-    <%= render 'shared/likes', { post: p } %><br />
-    <% if p.comments.any?%>
-      <%= render 'shared/comments', { comments: find_comments(p) } %>
+<div class="container">
+  <div class="row">
+    <% @posts.each do |p| %>
+      <% if @friends.include?(p.user) || p.user == current_user %>
+        <%= p.body %><br />
+        <%= link_to p.user.name, user_path(p.user.id) %><br />
+        <%= render 'shared/likes', { post: p } %><br />
+        <% if p.comments.any?%>
+          <%= render 'shared/comments', { comments: find_comments(p) } %>
+        <% end %>
+        <%= render 'shared/new_comment', { post: p } %><br />
+      <% end %>
     <% end %>
-    <%= render 'shared/new_comment', { post: p } %><br />
-  <% end %>
-<% end %>
-<%= render 'shared/new_post' %>
-<%= render 'shared/links' %>
-<%= link_to 'Find new friends', users_path %>
+    <%= render 'shared/new_post' %>
+    <%= render 'shared/links' %>
+    <%= link_to 'Find new friends', users_path %>
+  </div>
+</div>

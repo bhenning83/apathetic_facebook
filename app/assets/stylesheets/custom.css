@@ -6,7 +6,7 @@
   --forest-green-traditional: #004f2dff;
 }
 body {
-  padding-top: 50px;
+  padding-top: 75px;
 }
 a {
   color: var(--forest-green-traditional);
@@ -52,4 +52,10 @@ header a {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+#file-uploader {
+  background: var(--forest-green-traditional);
+}
+.error-message {
+  color: var(--sea-green);
 }

@@ -4,20 +4,17 @@
   <% end %>
 </div>
 
-  <div class="prof-pic-box bg-light">
+  <div class="prof-pic-box">
     <% if @user.avatar.attached? %>
       <%= image_tag @user.avatar, class: "prof-pic" %>
-      <div class="edit-profile">
-        <%= link_to 'Edit', edit_user_registration_path(current_user) %>
-      </div>
+      <%= link_to 'Edit', edit_user_registration_path(current_user), class: "edit-profile" %>
     <% elsif @user == current_user %>
-      <div class="edit-profile">
-        <%= link_to 'Add a profile pic', edit_user_registration_path(current_user) %>
-      </div>
+      <%= image_tag @user.gravatar_url(default: 'robohash', size: 120), class: "prof-pic"%>
+      <%= link_to 'Edit', edit_user_registration_path(current_user), class: "edit-profile" %>
+    <% else %>
+      <%= image_tag @user.gravatar_url(default: 'robohash', size: 120), class: "prof-pic"%>
+    <% end %>
   </div>
-  <% else %>
-    <%= image_tag @user.gravatar_url(default: 'wavatar', size: 120), class: "prof-pic"%>
-  <% end %>
 
 <% if current_user == @user %>
   <%= render 'shared/new_post' %>
@@ -50,6 +47,6 @@
       <%= render 'request', { request: r } %>
     <% end %>
   <% end %>
-  <%= link_to 'Search for Friends', users_path %>
+  <%= link_to 'Search for friends (good luck)', users_path %>
 <% end %>
 
