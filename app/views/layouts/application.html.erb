@@ -7,26 +7,44 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'custom.css' %>
   </head>
 
   <body>
     <header class="jumbotron jumbotron-fluid fixed-top">
-      <div class="container d-flex justify-content-between">
-        <h1>Apathetic Facebook :/</h1>
-        <div class="align-self-center">
-          <% if user_signed_in? %>
-            <%= render 'shared/links', class: "jumbo-links" %>
-          <% end %>
-        </div>
-      </div>
+      <nav class="container-fluid px-5 navbar navbar-expand-lg">
+        <h1 class="col-7"><span class="d-none d-md-inline">Apathetic Facebook</span> :/</h1>
+        <% if user_signed_in? %>
+          <button class="hamburger hamburger--minus navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsible-btns">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsible-btns">
+            <ul class="nav navbar-nav ml-auto">
+              <li class="nav-item"><%= link_to 'Home', posts_path, class: "nav-link" %></li>
+              <li class="nav-item mx-4"><%= link_to 'Profile', user_path(current_user), class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to 'Sign Out', destroy_user_session_path, method: 'delete', class: "nav-link" %></li>
+            </ul>
+          </div>
+        <% end %>
+      </nav>
     </header>
 
-  <% flash.each do |type, msg| %>
-    <div class="error-message text-center">
-      <%= msg %>
-    </div>
-    <% end %>
-    <%= yield %>
+    <% flash.each do |type, msg| %>
+      <div class="error-message text-center">
+        <%= msg %>
+      </div>
+      <% end %>
+      <%= yield %>
+    <script>
+      // Look for .hamburger
+      var hamburger = document.querySelector(".hamburger");
+      // On click
+      hamburger.addEventListener("click", function() {
+        // Toggle class "is-active"
+        hamburger.classList.toggle("is-active");
+        // Do something else, like open/close menu
+      });
+    </script>
   </body>
 </html>
