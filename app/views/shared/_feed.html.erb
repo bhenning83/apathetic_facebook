@@ -1,0 +1,15 @@
+ <% posts.each do |p| %>
+      <% if friends.include?(p.user) || p.user == current_user %>
+        <%= p.body %><br />
+        <%= link_to p.user.name, user_path(p.user.id) %><br />
+        <%= render 'shared/likes', { post: p } %><br />
+        <% if p.comments.any?%>
+          <%= render 'comments/comments', { comments: find_comments(p) } %>
+        <% end %>
+        <%= render 'comments/new_comment', { post: p } %><br />
+        <% if current_user == @user %>
+          <%= button_to 'Edit', edit_post_path(p.id), method: :get %>
+          <%= button_to 'Delete', post_path(p.id), method: :delete %>
+        <% end %><br /><br />
+      <% end %>
+    <% end %>

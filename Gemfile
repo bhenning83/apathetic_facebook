@@ -47,7 +47,7 @@ gem 'rails_12factor', group: :production
 
 gem 'sendgrid-ruby'
 
-gem 'bootstrap', '~> 5.0.0.alpha2'
+gem 'bootstrap'
 
 gem 'jquery-rails'
 
