@@ -1,15 +1,19 @@
- <% posts.each do |p| %>
-      <% if friends.include?(p.user) || p.user == current_user %>
-        <%= p.body %><br />
-        <%= link_to p.user.name, user_path(p.user.id) %><br />
-        <%= render 'shared/likes', { post: p } %><br />
-        <% if p.comments.any?%>
-          <%= render 'comments/comments', { comments: find_comments(p) } %>
-        <% end %>
-        <%= render 'comments/new_comment', { post: p } %><br />
-        <% if current_user == @user %>
-          <%= button_to 'Edit', edit_post_path(p.id), method: :get %>
-          <%= button_to 'Delete', post_path(p.id), method: :delete %>
-        <% end %><br /><br />
+<% posts.each do |p| %>
+  <div class="bg-light my-4">
+    <% if friends.include?(p.user) || p.user == current_user %>
+      <%= link_to p.user.name, user_path(p.user.id) %><br />
+      <%= p.body %><br />
+      <%= p.created_at.to_date %>
+       <% if current_user == @user %>
+        <%= link_to (fa_icon "pencil"), edit_post_path(p.id)%>
+        <%= button_to 'Delete', post_path(p.id), method: :delete %>
+      <% end %><br /><br />
+      <%= render 'shared/likes', { post: p } %><br />
+      <%= render 'comments/new_comment', { post: p } %><br />
+      <% if p.comments.any?%>
+        <%= render 'comments/comments', { comments: find_comments(p) } %>
       <% end %>
     <% end %>
+  </div>
+<% end %>
+

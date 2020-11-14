@@ -10,6 +10,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @all_users = User.all
     @friends = current_user.friends.all
-    @posts = Post.where(user_id: @user.id).order(created_at: :desc )
+    @posts = Post.includes(:user).where(user_id: @user.id).order(created_at: :desc )
   end
 end

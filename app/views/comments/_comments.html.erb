@@ -1,8 +1,10 @@
-<% comments.each do |c| %>
-  <%= c.body %>
-  -<%= link_to c.user.name, user_path(c.user) %>
-  <% if c.user == current_user %>
-    <%= link_to 'delete comment', comment_path(c), method: 'delete' %>
+<div class="ml-3">
+  <% comments.each do |c| %>
+    <%= c.body %>
+    -<%= link_to c.user.name, user_path(c.user) %>
+    <% if c.user == current_user %>
+      <%= link_to 'delete comment', comment_path(c), method: 'delete' %>
+    <% end %>
+    <br />
   <% end %>
-  <br />
-<% end %>
+</div>

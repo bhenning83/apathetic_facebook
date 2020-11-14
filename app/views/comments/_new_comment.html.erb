@@ -1,5 +1,7 @@
-<%= form_for :comment, url: new_comment_path(post.id) do |f| %>
-  <%= f.hidden_field :post_id, value: post.id %>
-  <%= f.text_field :body, placeholder: 'Now what?' %><br /> 
-  <%= f.submit 'Share' %>
-<% end %>
+  <div class="form-inline form-group ml-3">
+    <%= form_for :comment, url: new_comment_path(post.id) do |f| %>
+      <%= f.hidden_field :post_id, value: post.id %>
+      <%= f.text_area :body, placeholder: 'Now what?', class: 'form-control w-50' %>
+      <%= f.submit 'Comment', class: "go-btn" %>
+    <% end %>
+</div>
