@@ -5,8 +5,16 @@ class FriendRequestsController < ApplicationController
                                                 )
     if request.save
       flash.notice = 'Friend Request sent'
-      redirect_to user_path(params[:user_id])
+    else
+      flash.notice = 'We done messed up'
     end
+
+    if params[:path] == users_path
+      back = users_path
+    else
+      back = user_path(params[:user_id])
+    end
+    redirect_to back
   end
 
   def destroy

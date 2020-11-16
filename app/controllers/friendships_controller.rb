@@ -9,12 +9,9 @@ class FriendshipsController < ApplicationController
     friendship = Friendship.where('user_id = ? AND
                                     friend_id = ?',
                                     current_user.id, params[:id])[0]
-    puts '!!!!!!!!!'
-    puts friendship.id
     if friendship.destroy
       redirect_to root_url
     else
-      puts 'uh oh'
       redirect_to root_url
     end
   end

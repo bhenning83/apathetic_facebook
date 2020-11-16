@@ -2,7 +2,7 @@
 
 <% @users.each do |u| %>
   <%= link_to u.name, user_path(u.id) %><br />
-  <%= render 'shared/request_options', { user: u } %>
+  <%= render 'shared/request_options', { user: u, path: users_path } %>
 <% end %>
 
 <%= render 'shared/links' %>

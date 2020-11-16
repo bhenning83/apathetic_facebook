@@ -1,8 +1,8 @@
 <% if post.likes.any? %>
   <% if post.likes.size == 1 %>
-    <em><%= liker(post).name %> thinks this is okay.</em>
+    <em><%= liker(post).name %> thinks this is meh.</em>
   <% else %>
-    <em><%= post.likes.size %> people think this is fine.</em>
+    <em><%= post.likes.size %> people think this is meh.</em>
   <% end %>
 <% else %>
   <em>0 people think this is cool</em>
@@ -11,5 +11,5 @@
 <% if already_liked?(post) %>
   <%= link_to 'Never mind', like_path(current_like(post).id), method: 'delete' %>
 <% else %>
-  <%= link_to "Fine", likes_path(post: post), method: 'post' %>
+  <%= link_to ":/", likes_path(post: post), method: 'post' %>
 <% end %>

@@ -1,19 +1,18 @@
 <div class="row">
-  <div class="col-12 col-lg-4 my-2 my-lg-4 d-flex flex-column align-items-center d-lg-block">
+  <div class="col-12 col-xl-4 my-2 my-xl-4 d-flex flex-column align-items-center d-lg-block">
     <div class="prof-pic-box">
       <% if @user.avatar.attached? %>
         <%= image_tag @user.avatar, class: "prof-pic" %>
-        <%= link_to 'Edit', edit_user_registration_path(current_user), class: "edit-profile" %>
-      <% elsif @user == current_user %>
-        <%= image_tag @user.gravatar_url(default: 'robohash', size: 120), class: "prof-pic"%>
-        <%= link_to 'Edit', edit_user_registration_path(current_user), class: "edit-profile" %>
       <% else %>
         <%= image_tag @user.gravatar_url(default: 'robohash', size: 120), class: "prof-pic"%>
       <% end %>
+      <% if @user == current_user %>
+        <%= link_to 'Edit', edit_user_registration_path(current_user), class: "edit-profile" %>
+      <% end %>    
     </div>
   </div>
 
-  <div class="col-12 col-lg-7 mt-4 d-flex flex-column align-items-center d-lg-block">
+  <div class="col-12 col-xl-5 mt-4 d-flex flex-column align-items-center d-lg-block">
     <h1><%= @user.name %></h1>
     <div class="col-12">  
       <% if current_user == @user %>
@@ -24,23 +23,25 @@
         <% end %>
     </div>
   </div>
-</div>
+
 
 <% if @user != current_user %>
   <%= render 'shared/request_options', { user: @user } %>
 <% end %>
 
-<% if @user == current_user %>
-  <div>
-    <h3 class="d-none d-md-block">Friend requests:</h3>
-    <% if friend_request_list.empty? %>
-      <p>Looks like no one wants to be your friend.</p>
-    <% else %>
-      <% friend_request_list.each do |r| %>
-        <%= render 'request', { request: r } %>
-      <% end %>
+  <div class="col-xl-3 mt-xl-4">
+    <% if @user == current_user %>
+      <div>
+        <h3>Friend requests:</h3>
+        <% if friend_request_list.empty? %>
+          <p>Looks like no one wants to be your friend.</p>
+        <% else %>
+          <% friend_request_list.each do |r| %>
+            <%= render 'request', { request: r } %>
+          <% end %>
+        <% end %>
+        <%= link_to 'Search for friends (good luck)', users_path %>
+      </div>
     <% end %>
-    <%= link_to 'Search for friends (good luck)', users_path %>
   </div>
-<% end %>
-
+</div>
