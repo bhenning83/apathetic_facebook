@@ -1,8 +1,11 @@
 <h2>You are signed in as <%=current_user.name %></h2>
-
-<% @users.each do |u| %>
-  <%= link_to u.name, user_path(u.id) %><br />
-  <%= render 'shared/request_options', { user: u, path: users_path } %>
-<% end %>
-
-<%= render 'shared/links' %>
+<div class="row">
+  <div class="col-4">
+    <% @users.each do |u| %>
+      <div class="d-flex align-items-center">
+        <%= render 'users/user_thumb', { user: u } %>
+        <%= render 'shared/request_options', { user: u, path: users_path } %>
+      </div>
+    <% end %>
+  </div>
+</div>

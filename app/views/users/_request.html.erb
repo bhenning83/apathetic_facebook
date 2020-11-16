@@ -1,3 +1,2 @@
-<%= request.requester.name %>
-<%= button_to 'Accept', friendships_path(friend_request: request) %>
-<%= button_to 'Deny', friend_request_path(request.id), method: 'delete' %>
+  <%= button_to 'Accept', friendships_path(friend_request: request), class: "go-btn mx-3" %>
+  <%= button_to 'Deny', friend_request_path(request.id), method: 'delete', class: "go-btn" %>

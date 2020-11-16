@@ -45,8 +45,12 @@ header a {
   position: relative;
   width: 230px;
 }
+.thumb-box {
+  width: 40px;
+}
 .prof-pic {
   border-radius: 50%;
+  width: 100%;
 }
 .edit-profile {
   position: absolute;
@@ -58,4 +62,10 @@ header a {
 }
 .error-message {
   color: var(--sea-green);
+}
+.name-link {
+  color: black;
+}
+.name-link:hover {
+  text-decoration: underline;
 }

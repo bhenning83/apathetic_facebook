@@ -1,5 +1,5 @@
-<% posts.each do |p| %>
-  <div class="bg-light my-4 py-2 px-3">
+<div class="bg-light my-4 py-2 px-3">
+  <% posts.each do |p| %>
     <% if friends.include?(p.user) || p.user == current_user %>
       <div class="d-flex">
         <%= link_to p.user.name, user_path(p.user.id) %><br />
@@ -24,6 +24,6 @@
       <% end %>
       <%= render 'comments/new_comment', { post: p } %><br />
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>
 

@@ -1,0 +1,5 @@
+<% if user.avatar.attached? %>
+  <%= image_tag user.avatar, class: "prof-pic" %>
+<% else %>
+  <%= image_tag user.gravatar_url(default: 'mm', size: 300), class: "prof-pic"%>
+<% end %>

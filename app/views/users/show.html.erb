@@ -1,11 +1,7 @@
 <div class="row">
   <div class="col-12 col-xl-4 my-2 my-xl-4 d-flex flex-column align-items-center d-lg-block">
     <div class="prof-pic-box">
-      <% if @user.avatar.attached? %>
-        <%= image_tag @user.avatar, class: "prof-pic" %>
-      <% else %>
-        <%= image_tag @user.gravatar_url(default: 'robohash', size: 120), class: "prof-pic"%>
-      <% end %>
+      <%= render 'profile_pic', { user: @user }%>
       <% if @user == current_user %>
         <%= link_to 'Edit', edit_user_registration_path(current_user), class: "edit-profile" %>
       <% end %>    
@@ -18,18 +14,22 @@
       <% if current_user == @user %>
         <%= render 'posts/new_post' %>
       <% end %>
+      <% if @friends.include? @user %>
         <% if @posts.any? %>
           <%= render 'shared/feed', { posts: @posts, friends: @friends }%>
         <% end %>
+      <% else %>
+       <h3>You must be friends to see their posts.</h3>
+      <% end %>
     </div>
   </div>
 
 
-<% if @user != current_user %>
-  <%= render 'shared/request_options', { user: @user, path: nil } %>
-<% end %>
+  <div class="col-12 col-md-6 col-lg-4 col-xl-3 mt-xl-4">
+    <% if @user != current_user %>
+      <%= render 'shared/request_options', { user: @user, path: nil } %>
+    <% end %>
 
-  <div class="col-xl-3 mt-xl-4">
     <% if @user == current_user %>
       <div>
         <h3>Friend requests:</h3>
@@ -37,7 +37,10 @@
           <p>Looks like no one wants to be your friend.</p>
         <% else %>
           <% friend_request_list.each do |r| %>
-            <%= render 'request', { request: r } %>
+            <div class="d-flex align-items-center">
+              <%= render 'user_thumb', { user: r.requester } %>
+              <%= render 'request', { request: r } %>
+            </div>
           <% end %>
         <% end %>
         <%= link_to 'Search for friends (good luck)', users_path %>
