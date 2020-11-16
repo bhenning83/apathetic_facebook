@@ -6,5 +6,5 @@
   <p>Respond to their friend request if you want:</p>
   <%= render 'request', { request: find_request(user) } %>
 <% else %>
-  <%= button_to 'Send Friend Request', friend_requests_path(user_id: user.id) %>
+  <%= button_to 'Send Friend Request', friend_requests_path(user_id: user.id, path: path) %>
 <% end %>
