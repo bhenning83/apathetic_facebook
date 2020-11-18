@@ -1,2 +1,4 @@
-  <%= button_to 'Accept', friendships_path(friend_request: request), class: "go-btn mx-3" %>
-  <%= button_to 'Deny', friend_request_path(request.id), method: 'delete', class: "go-btn" %>
+  <div class="d-flex">
+    <%= button_to 'Accept', friendships_path(friend_request: request), class: "go-btn mx-3" %>
+    <%= button_to 'Deny', friend_request_path(request.id), method: 'delete', class: "stop-btn" %>
+  </div>

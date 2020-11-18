@@ -1,9 +1,16 @@
 <% if friends.include?(user) %>
-  <%= button_to 'Forget this fool', friendship_path(user), method: 'delete' %>
+  <% if show_page %> <p><strong>You are friends. For now.</strong></p><% end %>
+  <%= button_to 'Forget this fool', friendship_path(user), method: 'delete', class: "stop-btn" %>
 <% elsif sent_requests.include?(user) %>
-  <p>Friend request sent. Not looking too good, huh bud?</p>
+  <% if show_page %> 
+    <p><strong>Friend request sent. Not looking too good, huh bud?</strong></p>
+  <% else %>
+    <p>Friend reqeust sent
+  <% end %>
 <% elsif received_requests.include?(user) %>
+  <% if show_page %> <p><strong>They wanna be your friend. Your call.</strong></p><% end %>
   <%= render 'request', { request: find_request(user) } %>
-<% else %>
-  <%= button_to 'Send Friend Request', friend_requests_path(user_id: user.id, path: path) %>
+<% elsif user != current_user %>
+  <% if show_page %> <p><strong>Wanna stick your neck out there?</strong></p><% end %>
+  <%= button_to 'Send Request', friend_requests_path(user_id: user.id, path: path), class: "go-btn my-3" %>
 <% end %>

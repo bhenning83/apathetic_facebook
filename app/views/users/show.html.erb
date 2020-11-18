@@ -1,20 +1,14 @@
 <div class="row">
   <div class="col-12 col-xl-4 my-2 my-xl-4 d-flex flex-column align-items-center d-lg-block">
-    <div class="prof-pic-box">
-      <%= render 'profile_pic', { user: @user }%>
-      <% if @user == current_user %>
-        <%= link_to 'Edit', edit_user_registration_path(current_user), class: "edit-profile" %>
-      <% end %>    
-    </div>
+    <%= render 'users/profile_left', { user: current_user } %>
   </div>
 
   <div class="col-12 col-xl-5 mt-4 d-flex flex-column align-items-center d-lg-block">
-    <h1><%= @user.name %></h1>
-    <div class="col-12">  
+    <div class="w-100">  
       <% if current_user == @user %>
         <%= render 'posts/new_post' %>
       <% end %>
-      <% if @friends.include? @user %>
+      <% if (current_user == @user) || (@friends.include? @user) %>
         <% if @posts.any? %>
           <%= render 'shared/feed', { posts: @posts, friends: @friends }%>
         <% end %>
@@ -24,27 +18,7 @@
     </div>
   </div>
 
-
-  <div class="col-12 col-md-6 col-lg-4 col-xl-3 mt-xl-4">
-    <% if @user != current_user %>
-      <%= render 'shared/request_options', { user: @user, path: nil } %>
-    <% end %>
-
-    <% if @user == current_user %>
-      <div>
-        <h3>Friend requests:</h3>
-        <% if friend_request_list.empty? %>
-          <p>Looks like no one wants to be your friend.</p>
-        <% else %>
-          <% friend_request_list.each do |r| %>
-            <div class="d-flex align-items-center">
-              <%= render 'user_thumb', { user: r.requester } %>
-              <%= render 'request', { request: r } %>
-            </div>
-          <% end %>
-        <% end %>
-        <%= link_to 'Search for friends (good luck)', users_path %>
-      </div>
-    <% end %>
+  <div class="col-9 col-md-6 col-lg-4 col-xl-3 mt-xl-4">
+    <%= render 'shared/requests_section', { user: @user, friend_request_list: friend_request_list, show_page: true } %>
   </div>
 </div>

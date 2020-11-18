@@ -1,0 +1,15 @@
+<% if user == current_user %>
+  <h3>Friend requests:</h3>
+  <% if friend_request_list.empty? %>
+    <p>Looks like no one wants to be your friend.</p>
+  <% else %>
+    <% friend_request_list.each do |r| %>
+      <div class="d-flex align-items-center">
+        <%= render 'users/user_thumb', { user: r.requester, date: nil } %>
+        <%= render 'users/request', { request: r } %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+<%= render 'shared/request_options', { user: user, path: nil, show_page: show_page } %>
+<%= link_to 'Search for friends (good luck)', users_path %>

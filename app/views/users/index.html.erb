@@ -1,10 +1,9 @@
-<h2>You are signed in as <%=current_user.name %></h2>
 <div class="row">
-  <div class="col-4">
+  <div class="col-10 col-md-8 col-lg-5 col-xl-4">
     <% @users.each do |u| %>
-      <div class="d-flex align-items-center">
-        <%= render 'users/user_thumb', { user: u } %>
-        <%= render 'shared/request_options', { user: u, path: users_path } %>
+      <div class="d-flex align-items-center justify-content-between">
+        <%= render 'users/user_thumb', { user: u, date: nil } %>
+        <%= render 'shared/request_options', { user: u, path: users_path, show_page: false } %>
       </div>
     <% end %>
   </div>

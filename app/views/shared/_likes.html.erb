@@ -1,15 +1,15 @@
 <% if post.likes.any? %>
   <% if post.likes.size == 1 %>
-    <em><%= liker(post).name %> thinks this is meh.</em>
+    <p class="like-count d-inline mr-1 text-muted"><%= liker(post).name %> thinks this is meh.</p>
   <% else %>
-    <em><%= post.likes.size %> people think this is meh.</em>
+    <p class="like-count d-inline mr-1 text-muted"><%= post.likes.size %> people think this is meh.</p>
   <% end %>
 <% else %>
-  <em>0 people think this is cool</em>
+  <p class="like-count d-inline mr-1 text-muted">0 people think this is meh</p>
 <% end %>
 
 <% if already_liked?(post) %>
-  <%= link_to 'Never mind', like_path(current_like(post).id), method: 'delete' %>
+  <u><%= link_to 'unmeh', like_path(current_like(post).id), method: 'delete', class: "meh" %></u>
 <% else %>
-  <%= link_to ":/", likes_path(post: post), method: 'post' %>
+  <u><%= link_to "meh", likes_path(post: post), method: 'post', class: "meh" %></u>
 <% end %>

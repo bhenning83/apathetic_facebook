@@ -1,0 +1,12 @@
+<div class="d-flex align-items-center">
+  <div class="comment-thumb-box mr-2 mb-2">
+    <%= link_to (render 'users/profile_pic', { user: user }),
+    user_path(user.id) %>
+  </div>
+  <div class="d-flex flex-column">
+    <%= link_to user.name, user_path(user.id), class: "name-link comment-author overflow-wrap" %>
+    <% if date %>
+      <span class="post-date mr-2"><%= distance_of_time_in_words(Time.now, date) %> ago</span>
+    <% end %>
+  </div>
+</div>

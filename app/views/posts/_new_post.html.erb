@@ -1,6 +1,8 @@
-<div class="field form-group mb-4 d-flex flex-column position-relative mb-5">
+<div class="field form-group mb-4 d-flex flex-column position-relative mb-5 new-post">
   <%= form_for :post do |f| %>
-    <%= f.text_field :body, placeholder: "What is so important?", class: "form-control" %><br /> 
-    <%= f.submit 'Share with the world', class: "go-btn position-absolute right-0" %>
+    <%= f.text_area :body, placeholder: "What is so important?", class: "form-control" %><br /> 
+    <div class="d-flex justify-content-end">
+    <%= f.submit 'Share with the world', class: "go-btn" %>
+    </div>
   <% end %>
 </div>
