@@ -11,7 +11,16 @@
       <% end %>
     </div>
   </div>
-  <div class="col-9 col-md-6 col-lg-4 col-xl-3 mt-xl-4">
-    <%= render "shared/requests_section", { user: current_user, friend_request_list: friend_request_list, show_page: nil } %>
+  <div class="col-12 col-xl-3 mt-xl-4">
+    <h3>Your So-Called Friends:</h3>
+    <% if @friends_list.any? %>
+      <% @friends_list.each do |f| %>
+        <%= render 'users/user_thumb', { user: f, date: nil } %>
+      <% end %>
+    <% else %>
+      <p>Yikes. It's more lonely in here than Chris McCandless's bus. Better get on that:</p>
+      <%= link_to "Find a friend", users_path %>
+    <% end %>
+  <hr>
   </div>
 </div>

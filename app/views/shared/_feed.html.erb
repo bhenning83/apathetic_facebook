@@ -3,7 +3,7 @@
     <div class="d-flex">
       <%= render 'users/user_thumb', { user: p.user, date: p.created_at.to_date } %>
       <% if current_user == @user %>
-        <div class="align-self-end">
+        <div class="align-self-end mb-1">
           <%= link_to (fa_icon "pencil"), edit_post_path(p.id), class: "mx-1" %>
           <%= link_to (fa_icon "trash"), post_path(p.id), method: :delete %>
         </div>

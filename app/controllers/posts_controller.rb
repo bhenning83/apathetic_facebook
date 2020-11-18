@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @friends = current_user.friends.all
+    @friends_list = @friends.limit(10)
     @posts = Post.where(user_id: current_user.friends).or(Post.where(user_id: current_user)).order(created_at: :desc).limit(10)
   end
 

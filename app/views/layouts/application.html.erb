@@ -18,22 +18,22 @@
         <% if user_signed_in? %>
           <div class="ml-md-auto d-flex">
             <%= link_to 'Home', posts_path, class: "nav-link" %></li>
-            <%= link_to 'Profile', user_path(current_user), class: "nav-link mx-4" %></li>
+            <%= link_to 'Profile', user_path(current_user), class: "nav-link mx-1 mx-md-4" %></li>
             <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete', class: "nav-link" %></li>
           </div>
         <% end %>
       </nav>
     </header>
+     
 
     <div class="container">
-      <%= yield %>
-    </div>
-
-    <% flash.each do |type, msg| %>
+     <% flash.each do |type, msg| %>
       <div class="error-message text-center">
         <%= msg %>
       </div>
       <% end %>
+      <%= yield %>
+    </div>
       
     <script>
       // Look for .hamburger
