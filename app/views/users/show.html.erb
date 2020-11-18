@@ -6,7 +6,7 @@
   <div class="col-12 col-xl-5 mt-4 d-flex flex-column align-items-center d-lg-block">
     <div class="w-100">  
       <% if current_user == @user %>
-        <%= render 'posts/new_post' %>
+        <div class="mt-3"><%= render 'posts/new_post' %></div>
       <% end %>
       <% if (current_user == @user) || (@friends.include? @user) %>
         <% if @posts.any? %>

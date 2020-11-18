@@ -1,9 +1,9 @@
   <% comments.each do |c| %>
     <div><%= render 'comments/comment_thumb', { user: c.user, date: c.created_at.to_date } %></div>
-    <div class="d-flex">
+    <div class="d-flex comment-box">
       <div class="pr-2 mb-2 comment"><%= c.body %></div>
       <% if c.user == current_user %>
-        <%= link_to (fa_icon "trash-o"), comment_path(c), method: 'delete', class: "align-self-end" %>
+        <%= link_to (fa_icon "trash-o"), comment_path(c), method: 'delete' %>
       <% end %>
     </div>
   <% end %>
