@@ -1,17 +1,17 @@
 <div class="row">
   <div class="col-12 col-xl-4 my-2 my-xl-4 d-flex flex-column align-items-center d-lg-block">
-    <%= render 'users/profile_left', { user: current_user } %>
+    <%= render 'users/profile_left', { user: current_user, friends: [1] } %>
   </div>
 
   <div class="col-12 col-xl-5 mt-4 d-flex flex-column align-items-center d-lg-block">
-    <h1><%= current_user.name %></h1>
     <div class="w-100">
       <div class="mt-3"><%= render 'new_post' %></div>
       <% if @posts.any? %>
         <%= render 'shared/feed', { posts: @posts, friends: @friends }%>
       <% end %>
     </div>
-    <div class="col-9 col-md-6 col-lg-4 col-xl-3 mt-xl-4">
-      <%= render "shared/requests_section", { user: current_user, friend_request_list: friend_request_list, show_page: nil } %>
+  </div>
+  <div class="col-9 col-md-6 col-lg-4 col-xl-3 mt-xl-4">
+    <%= render "shared/requests_section", { user: current_user, friend_request_list: friend_request_list, show_page: nil } %>
   </div>
 </div>

@@ -9,11 +9,10 @@
           <% if resource.avatar.attached? %>
             <%= image_tag resource.avatar, class: "prof-pic" %>
           <% end %>
-          <p class="mb-1">Upload a new profile picture</p>
         </div>
-          <label class="btn go-btn mb-3">
-            Select File
-            <span style="display:none;">
+          <label class="btn go-btn my-3">
+            Upload a new profile picture
+            <span style="">
               <%= f.file_field :avatar %>
             </span>
           </label>

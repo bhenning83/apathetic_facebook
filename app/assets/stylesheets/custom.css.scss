@@ -51,15 +51,20 @@ textarea {
 .prof-pic-box {
   position: relative;
   width: 230px;
+  height: 230px;
+  margin: 0 auto;
 }
 .thumb-box {
   width: 50px;
+  height: 50px;
 }
 .comment-thumb-box {
   width: 40px;
+  height: 40px;
 }
 .prof-pic {
   border-radius: 50%;
+  height: 100%;
   width: 100%;
 }
 .edit-profile {
@@ -81,6 +86,7 @@ textarea {
 }
 .post-box {
   background: var(--beau-blue);
+  border-radius: 4px;
 }
 .post-date {
   font-size: 0.8rem;
