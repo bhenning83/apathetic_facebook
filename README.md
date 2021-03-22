@@ -4,4 +4,5 @@ This a project suggested by <a href='theodinproject.com'>The Odin Project</a>. T
 
 
 Created with JavaScript. View it live <a href='https://warm-everglades-80886.herokuapp.com/'>here</a>.* 
+<br>
 \*Note: It's hosted for free on Heroku. If the app is unused for awhile it is unloaded from their server's memory. So the initial load time might be pretty sluggish. 
