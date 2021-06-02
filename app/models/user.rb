@@ -42,7 +42,8 @@ class User < ApplicationRecord
 
         # upload via ActiveStorage
         # be careful here! the type may be png or other type!
-        user.avatar.attach(io: downloaded_image, filename: 'image.jpg', content_type: downloaded_image.content_type)
+        # user.avatar.attach(io: downloaded_image, filename: 'image.jpg', content_type: downloaded_image.content_type)
+        user.avatar.attach(URI.parse(auth.info.image)) if auth.info.image?
       end
     end
   end
