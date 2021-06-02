@@ -5,7 +5,7 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="field d-flex flex-column align-items-center">
+        <div class="field d-flex flex-column align-items-center prof-pic-box">
           <% if resource.avatar.attached? %>
             <%= image_tag resource.avatar, class: "prof-pic" %>
           <% end %>
@@ -16,6 +16,7 @@
               <%= f.file_field :avatar %>
             </span>
           </label>
+
         <div class="field form-group my-3">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
@@ -39,11 +40,6 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
 
-
-      <p class="mt-5 mb-0">Unhappy? Wow, shocker. <%= button_to "Cancel my account", registration_path(resource_name), 
-                                    data: { confirm: "Are you sure?" }, method: :delete, 
-                                    class: "btn go-btn"%></p>
-
         <div class="field form-group">
           <%= f.label :current_password %> <i>(enter your current password to confirm your changes)</i><br />
           <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
@@ -53,6 +49,10 @@
           <%= f.submit "Update", class: "btn go-btn" %>
         </div>
       <% end %>
+
+      <p class="mt-5 mb-0">Unhappy? Wow, shocker. <%= button_to "Cancel my account", registration_path(resource_name), 
+                              data: { confirm: "Are you sure?" }, method: :delete, 
+                              class: "btn go-btn"%></p>
 
 
       <%= link_to "Back", :back %>

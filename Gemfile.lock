@@ -156,7 +156,6 @@ GEM
     pg (1.2.3)
     popper_js (1.14.7)
     public_suffix (4.0.6)
-    puma (3.12.6)
     rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -281,7 +280,6 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   pg (>= 0.18, < 2.0)
-  puma (~> 3.11)
   rails (~> 5.2.4, >= 5.2.4.4)
   rails_12factor
   sass-rails (~> 5.0)
@@ -298,4 +296,4 @@ RUBY VERSION
    ruby 2.7.0p0
 
 BUNDLED WITH
-   2.1.2
+   2.2.16

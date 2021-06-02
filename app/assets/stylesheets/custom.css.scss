@@ -64,9 +64,10 @@ textarea {
   height: 40px;
 }
 .prof-pic {
-  border-radius: 50%;
+  border-radius: 500px;
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 .edit-profile {
   position: absolute;
