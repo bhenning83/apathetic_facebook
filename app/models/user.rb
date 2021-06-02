@@ -35,6 +35,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
+      user.avatar.attach(URI.parse(auth.info.image)) if auth.info.image?
       if user.avatar.attached?
       else
         # open the link
@@ -43,7 +44,6 @@ class User < ApplicationRecord
         # upload via ActiveStorage
         # be careful here! the type may be png or other type!
         # user.avatar.attach(io: downloaded_image, filename: 'image.jpg', content_type: downloaded_image.content_type)
-        user.avatar.attach(URI.parse(auth.info.image)) if auth.info.image?
       end
     end
   end
